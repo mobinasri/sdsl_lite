@@ -194,7 +194,7 @@ class k2_treap
             uint8_t res = 0;
             while (res <= 64 and precomp<t_k>::exp(res) <= x) { ++res; }
             if (res == 65) {
-                throw std::logic_error("Maximal element of input is too big.");
+                ABSL_LOG(FATAL) << "Maximal element of input is too big.";
             }
 
             if (precomp<t_k>::exp(res) <= std::numeric_limits<uint32_t>::max()) {

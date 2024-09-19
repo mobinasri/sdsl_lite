@@ -14,7 +14,7 @@ sdsl::ram_fs_initializer::ram_fs_initializer()
 {
     if (0 == nifty_counter++) {
         if (!ram_fs::m_map.empty()) {
-            throw std::logic_error("Static preinitialized object is not empty.");
+            ABSL_LOG(FATAL) << "Static preinitialized object is not empty.";
         }
     }
 }

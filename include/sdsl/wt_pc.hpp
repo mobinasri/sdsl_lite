@@ -223,7 +223,7 @@ class wt_pc
                 bv_node_pos[v] = m_tree.bv_pos(v);
             }
             if (input_buf.size() < size) {
-                throw std::logic_error("Stream size is smaller than size!");
+                ABSL_LOG(FATAL) << "Stream size is smaller than size!";
                 return;
             }
             value_type old_chr = input_buf[0];
