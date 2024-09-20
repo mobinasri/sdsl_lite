@@ -382,7 +382,7 @@ void serialize_to(const Serialize& data, const std::string& filename)
     // The default error message can be uninformative.
     std::ofstream out(filename, std::ios_base::binary);
     if (!out) {
-        ABSL_LOG(FATAL) << filename, true;
+        ABSL_LOG(FATAL) << filename;
     }
 
     out.exceptions(std::ofstream::failbit | std::ofstream::badbit);
@@ -405,7 +405,7 @@ void load_from(Serialize& data, const std::string& filename)
     // The default error message can be uninformative.
     std::ifstream in(filename, std::ios_base::binary);
     if (!in) {
-        ABSL_LOG(FATAL) << filename, false;
+        ABSL_LOG(FATAL) << filename;
     }
 
     in.exceptions(std::ifstream::eofbit | std::ifstream::badbit | std::ifstream::failbit);

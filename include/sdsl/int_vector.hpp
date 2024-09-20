@@ -1301,7 +1301,7 @@ inline int_vector<t_width>::int_vector(const int_vector& v):
     bit_resize(v.bit_size());
     if (v.capacity() > 0) {
         if (memcpy(m_data, v.data() ,v.capacity()/8)==nullptr) {
-            ABSL_LOG(FATAL) << ; // LCOV_EXCL_LINE
+            ABSL_LOG(FATAL) << "BAD_ALLOC" ; // LCOV_EXCL_LINE
         }
     }
     width(v.m_width);
@@ -1314,7 +1314,7 @@ int_vector<t_width>& int_vector<t_width>::operator=(const int_vector& v)
         bit_resize(v.bit_size());
         if (v.bit_size()>0) {
             if (memcpy(m_data, v.data() ,v.capacity()/8)==nullptr) {
-                ABSL_LOG(FATAL) << ; // LCOV_EXCL_LINE
+                ABSL_LOG(FATAL) << "BAD_ALLOC"; // LCOV_EXCL_LINE
             }
         }
         width(v.width());
