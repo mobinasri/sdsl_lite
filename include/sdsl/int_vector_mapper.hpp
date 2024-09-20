@@ -1,6 +1,7 @@
 #ifndef SDSL_INT_VECTOR_MAPPER
 #define SDSL_INT_VECTOR_MAPPER
 
+#include "absl/log/absl_log.h"
 #include "int_vector.hpp"
 #include "memory_management.hpp"
 

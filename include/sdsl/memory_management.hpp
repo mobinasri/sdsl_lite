@@ -5,6 +5,7 @@
 #ifndef INCLUDED_SDSL_MEMORY_MANAGEMENT
 #define INCLUDED_SDSL_MEMORY_MANAGEMENT
 
+#include "absl/log/absl_log.h"
 #include "uintx_t.hpp"
 #include "util.hpp"
 

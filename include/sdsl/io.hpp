@@ -21,6 +21,7 @@
 #ifndef INCLUDED_SDSL_IO
 #define INCLUDED_SDSL_IO
 
+#include "absl/log/absl_log.h"
 #include "util.hpp"
 #include "sdsl_concepts.hpp"
 #include "structure_tree.hpp"

@@ -22,6 +22,7 @@
 #ifndef INCLUDED_SDSL_CONSTRUCT
 #define INCLUDED_SDSL_CONSTRUCT
 
+#include "absl/log/absl_log.h"
 #include "sdsl_concepts.hpp"
 #include "int_vector.hpp"
 #include "construct_lcp.hpp"

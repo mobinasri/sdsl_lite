@@ -21,6 +21,7 @@
 #ifndef INCLUDED_SDSL_K2_TREE
 #define INCLUDED_SDSL_K2_TREE
 
+#include "absl/log/absl_log.h"
 #include <deque>
 #include <queue>
 #include <stdexcept>

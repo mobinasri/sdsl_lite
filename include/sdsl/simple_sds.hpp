@@ -22,6 +22,7 @@
 #ifndef INCLUDED_SDSL_SIMPLE_SDS
 #define INCLUDED_SDSL_SIMPLE_SDS
 
+#include "absl/log/absl_log.h"
 #include <cstdint>
 #include <fstream>
 #include <iostream>

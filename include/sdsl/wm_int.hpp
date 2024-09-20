@@ -22,6 +22,7 @@
 #ifndef INCLUDED_SDSL_WM_INT
 #define INCLUDED_SDSL_WM_INT
 
+#include "absl/log/absl_log.h"
 #include "sdsl_concepts.hpp"
 #include "int_vector.hpp"
 #include "rank_support_v.hpp"

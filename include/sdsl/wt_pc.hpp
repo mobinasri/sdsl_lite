@@ -22,6 +22,7 @@
 #ifndef INCLUDED_SDSL_WT_PC
 #define INCLUDED_SDSL_WT_PC
 
+#include "absl/log/absl_log.h"
 #include "bit_vectors.hpp"
 #include "rank_support.hpp"
 #include "select_support.hpp"

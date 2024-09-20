@@ -21,6 +21,7 @@
 #ifndef SDSL_VLC_VECTOR
 #define SDSL_VLC_VECTOR
 
+#include "absl/log/absl_log.h"
 #include "int_vector.hpp"
 #include "coder_elias_delta.hpp"
 #include "iterators.hpp"

@@ -1,3 +1,4 @@
+#include "absl/log/absl_log.h"
 #include "sdsl/sd_vector.hpp"
 #include "sdsl/simple_sds.hpp"
 

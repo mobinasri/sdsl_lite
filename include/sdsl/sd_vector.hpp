@@ -24,6 +24,7 @@
 #ifndef INCLUDED_SDSL_SD_VECTOR
 #define INCLUDED_SDSL_SD_VECTOR
 
+#include "absl/log/absl_log.h"
 #include "int_vector.hpp"
 #include "select_support_mcl.hpp"
 #include "util.hpp"

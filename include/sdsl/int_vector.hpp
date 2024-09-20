@@ -21,6 +21,7 @@
 #ifndef INCLUDED_SDSL_INT_VECTOR
 #define INCLUDED_SDSL_INT_VECTOR
 
+#include "absl/log/absl_log.h"
 #include "bits.hpp"
 #include "structure_tree.hpp"
 #include "util.hpp"

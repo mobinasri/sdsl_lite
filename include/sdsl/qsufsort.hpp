@@ -38,6 +38,7 @@
 
 #define DBG_OUT if(0)std::cout
 
+#include "absl/log/absl_log.h"
 #include "int_vector.hpp"
 
 namespace sdsl

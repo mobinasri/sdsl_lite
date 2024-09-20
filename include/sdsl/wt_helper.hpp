@@ -1,6 +1,7 @@
 #ifndef INCLUDED_SDSL_WT_HELPER
 #define INCLUDED_SDSL_WT_HELPER
 
+#include "absl/log/absl_log.h"
 #include "int_vector.hpp"
 #include <algorithm>
 #include <limits>

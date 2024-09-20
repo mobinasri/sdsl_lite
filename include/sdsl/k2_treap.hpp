@@ -21,6 +21,7 @@
 #ifndef INCLUDED_SDSL_K2_TREAP
 #define INCLUDED_SDSL_K2_TREAP
 
+#include "absl/log/absl_log.h"
 #include "vectors.hpp"
 #include "bits.hpp"
 #include "k2_treap_helper.hpp"

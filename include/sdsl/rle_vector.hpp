@@ -1,6 +1,7 @@
 #ifndef INCLUDED_SDSL_RLE_VECTOR
 #define INCLUDED_SDSL_RLE_VECTOR
 
+#include "absl/log/absl_log.h"
 #include <algorithm>
 #include <iostream>
 #include <stdexcept>

@@ -22,6 +22,7 @@
 #ifndef INCLUDED_SDSL_WT_AP
 #define INCLUDED_SDSL_WT_AP
 
+#include "absl/log/absl_log.h"
 #include "bit_vectors.hpp"
 #include "int_vector.hpp"
 #include "vectors.hpp"

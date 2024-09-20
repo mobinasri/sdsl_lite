@@ -1,6 +1,7 @@
 /* sdsl - succinct data structures library
     Copyright (C) 2010 Simon Gog
 */
+#include "absl/log/absl_log.h"
 #include "sdsl/construct_isa.hpp"
 #include <string>
 

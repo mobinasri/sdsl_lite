@@ -1,3 +1,4 @@
+#include "absl/log/absl_log.h"
 #include <chrono>
 #include <algorithm>
 #include "sdsl/memory_management.hpp"

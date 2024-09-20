@@ -23,6 +23,7 @@
 #ifndef INCLUDED_SDSL_INT_WAVELET_TREE
 #define INCLUDED_SDSL_INT_WAVELET_TREE
 
+#include "absl/log/absl_log.h"
 #include "sdsl_concepts.hpp"
 #include "int_vector.hpp"
 #include "rank_support_v.hpp"

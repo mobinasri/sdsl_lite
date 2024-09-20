@@ -1,3 +1,4 @@
+#include "absl/log/absl_log.h"
 #include "sdsl/ram_fs.hpp"
 #include "sdsl/util.hpp"
 #include <cstdio>

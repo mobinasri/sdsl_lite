@@ -21,6 +21,7 @@
 #ifndef INCLUDED_SDSL_UTIL
 #define INCLUDED_SDSL_UTIL
 
+#include "absl/log/absl_log.h"
 #include "bits.hpp"
 #include "sfstream.hpp"
 #include "ram_fs.hpp"

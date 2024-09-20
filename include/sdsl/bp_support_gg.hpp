@@ -21,6 +21,7 @@
 #ifndef INCLUDED_SDSL_BP_SUPPORT_GG
 #define INCLUDED_SDSL_BP_SUPPORT_GG
 
+#include "absl/log/absl_log.h"
 #include "int_vector.hpp"
 #include "nearest_neighbour_dictionary.hpp"
 #include "rank_support.hpp"
