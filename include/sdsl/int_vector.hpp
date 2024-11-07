@@ -34,6 +34,7 @@
 #include "ram_fs.hpp"
 #include "sfstream.hpp"
 
+#include <cstdint>
 #include <iosfwd>    // forward declaration of ostream
 #include <stdexcept> // for exceptions
 #include <iostream>  // for cerr
@@ -327,6 +328,7 @@ class int_vector
         size_type      m_size;  //!< Number of bits needed to store int_vector.
         uint64_t*      m_data;  //!< Pointer to the memory for the bits.
         int_width_type m_width; //!< Width of the integers.
+        bool shared_memory_flag; //!< true if the data is loaded from shared memory.
 
     public:
 
@@ -339,6 +341,11 @@ class int_vector
 
         int_vector(size_type size, value_type default_value,
                    uint8_t int_width = t_width);
+
+        int_vector(size_type size,
+                uint8_t int_width,
+                uint64_t* data,
+                bool loaded_from_shared_memory);
 
         //! Constructor to fix possible comparison with integeres issue.
         explicit int_vector(size_type size = 0) : int_vector(size, static_cast<value_type>(0), t_width) {
@@ -363,6 +370,12 @@ class int_vector
 
         //! Destructor.
         ~int_vector();
+
+        //! get the flag indicating if the data is loaded from shared memory.
+        bool loaded_from_shared_memory() const
+        {
+            return shared_memory_flag;
+        }
 
         //! Equivalent to size() == 0.
         bool empty() const
@@ -1280,7 +1293,7 @@ operator<<(std::ostream& os, const t_bv& bv)
 
 template<uint8_t t_width>
 inline int_vector<t_width>::int_vector(size_type size, value_type default_value, uint8_t intWidth):
-    m_size(0), m_data(nullptr), m_width(t_width)
+    m_size(0), m_data(nullptr), m_width(t_width), shared_memory_flag(false)
 {
     width(intWidth);
     resize(size);
@@ -1288,8 +1301,16 @@ inline int_vector<t_width>::int_vector(size_type size, value_type default_value,
 }
 
 template<uint8_t t_width>
+inline int_vector<t_width>::int_vector(size_type size,  uint8_t int_width, uint64_t* data, bool loaded_from_shared_memory){
+    this->m_size = size;
+    this->m_data = data;
+    this->m_width = int_width;
+    this->shared_memory_flag = loaded_from_shared_memory;
+};
+
+template<uint8_t t_width>
 inline int_vector<t_width>::int_vector(int_vector&& v) :
-    m_size(v.m_size), m_data(v.m_data), m_width(v.m_width)
+    m_size(v.m_size), m_data(v.m_data), m_width(v.m_width), shared_memory_flag(v.loaded_from_shared_memory())
 {
     v.m_data = nullptr; // ownership of v.m_data now transferred
     v.m_size = 0;
@@ -1297,12 +1318,12 @@ inline int_vector<t_width>::int_vector(int_vector&& v) :
 
 template<uint8_t t_width>
 inline int_vector<t_width>::int_vector(const int_vector& v):
-    m_size(0), m_data(nullptr), m_width(v.m_width)
+    m_size(0), m_data(nullptr), m_width(v.m_width), shared_memory_flag(v.loaded_from_shared_memory())
 {
     bit_resize(v.bit_size());
     if (v.capacity() > 0) {
         if (memcpy(m_data, v.data() ,v.capacity()/8)==nullptr) {
-            ABSL_LOG(FATAL) << "BAD_ALLOC" ; // LCOV_EXCL_LINE
+            ABSL_LOG(FATAL) << "BAD_ALLOC"; // LCOV_EXCL_LINE
         }
     }
     width(v.m_width);
@@ -1334,7 +1355,9 @@ int_vector<t_width>& int_vector<t_width>::operator=(int_vector&& v)
 template<uint8_t t_width>
 int_vector<t_width>::~int_vector()
 {
-    memory_manager::clear(*this);
+    if (loaded_from_shared_memory() == false) {
+        memory_manager::clear(*this);
+    }
 }
 
 template<uint8_t t_width>
@@ -1344,12 +1367,15 @@ void int_vector<t_width>::swap(int_vector& v)
         size_type size     = m_size;
         uint64_t* data     = m_data;
         uint8_t  int_width = m_width;
+        bool shared_memory_flag_ = this->shared_memory_flag;
         m_size   = v.m_size;
         m_data   = v.m_data;
         width(v.m_width);
+        this->shared_memory_flag = v.shared_memory_flag;
         v.m_size = size;
         v.m_data = data;
         v.width(int_width);
+        v.shared_memory_flag = shared_memory_flag_;
     }
 }
 
