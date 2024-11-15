@@ -328,7 +328,7 @@ class int_vector
         size_type      m_size;  //!< Number of bits needed to store int_vector.
         uint64_t*      m_data;  //!< Pointer to the memory for the bits.
         int_width_type m_width; //!< Width of the integers.
-        bool shared_memory_flag; //!< true if the data is loaded from shared memory.
+        bool shared_memory_flag; //!< True if the data is loaded from shared memory.
 
     public:
 
@@ -342,6 +342,13 @@ class int_vector
         int_vector(size_type size, value_type default_value,
                    uint8_t int_width = t_width);
 
+        //! Alternative constructor for int_vector with data loaded from shared memory.
+        /*! \param size          Number of elements. Default value is 0.
+            \param default_value Initialize all value to `default value`.
+            \param int_width     The width of each integer.
+            \param data           Pointer to the raw data of the uint64_t.
+            \param loaded_from_shared_memory  Flag indicating if the data is loaded from shared memory.
+         */
         int_vector(size_type size,
                 uint8_t int_width,
                 uint64_t* data,
@@ -371,7 +378,7 @@ class int_vector
         //! Destructor.
         ~int_vector();
 
-        //! get the flag indicating if the data is loaded from shared memory.
+        //! Get the flag indicating if the data is loaded from shared memory.
         bool loaded_from_shared_memory() const
         {
             return shared_memory_flag;
@@ -1367,7 +1374,7 @@ void int_vector<t_width>::swap(int_vector& v)
         size_type size     = m_size;
         uint64_t* data     = m_data;
         uint8_t  int_width = m_width;
-        bool shared_memory_flag_ = this->shared_memory_flag;
+        bool shared_memory_flag_ = shared_memory_flag;
         m_size   = v.m_size;
         m_data   = v.m_data;
         width(v.m_width);
@@ -1382,7 +1389,9 @@ void int_vector<t_width>::swap(int_vector& v)
 template<uint8_t t_width>
 void int_vector<t_width>::bit_resize(const size_type size)
 {
-    memory_manager::resize(*this, size);
+    if (loaded_from_shared_memory() == false) {
+        memory_manager::resize(*this, size);
+    }
 }
 
 template<uint8_t t_width>
